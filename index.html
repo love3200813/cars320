@@ -88,7 +88,7 @@
         // 設定初始金額 (如果 localStorage 沒資料就會用這個)
         const initialData = {
             headerCash: 75999,
-            boxCash: 74999,
+            boxCash: 75999,
             pendingCash: 124324,
             totalCash: 751815,
             profit: 650324,
@@ -96,9 +96,9 @@
             withdrawn: 618215
         };
 
-        // 隨機增加幾百到幾千 (200 ~ 3500 之間)
+        // 隨機增加幾百到幾千 (20 ~ 1000 之間)
         function getRandomBoost() {
-            return Math.floor(Math.random() * (3500 - 200 + 1)) + 200;
+            return Math.floor(Math.random() * (1000 - 20 + 1)) + 20;
         }
 
         function updateAndSaveData() {
