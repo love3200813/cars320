@@ -8,58 +8,65 @@
     <style>
         body { font-family: "Microsoft JhengHei", "PingFang TC", sans-serif; background-color: #f4f7f9; }
         .vift-gradient { background: linear-gradient(90deg, #124d4a 0%, #29b8a8 100%); }
+        /* 隱藏/顯示裝置標籤的邏輯 */
+        .device-tag::after { content: "偵測中..."; }
+        @media (min-width: 1024px) { .device-tag::after { content: "電腦版模式"; } }
+        @media (min-width: 768px) and (max-width: 1023px) { .device-tag::after { content: "平板版模式"; } }
+        @media (max-width: 767px) { .device-tag::after { content: "手機版模式"; } }
     </style>
 </head>
 <body>
 
-    <nav class="bg-white border-b px-4 py-3 flex justify-between items-center shadow-sm">
-        <div class="flex items-center space-x-6">
-            <div class="flex flex-col border-r pr-4 border-gray-300">
-                <span class="text-[#002855] font-bold text-lg leading-tight">美安台灣</span>
-                <span class="text-[#002855] text-[10px] tracking-[2px]">超連鎖®事業</span>
+    <nav class="bg-white border-b px-4 py-3 flex justify-between items-center shadow-sm sticky top-0 z-50">
+        <div class="flex items-center space-x-2 md:space-x-6">
+            <div class="flex flex-col border-r pr-2 md:pr-4 border-gray-300">
+                <span class="text-[#002855] font-bold text-sm md:text-lg leading-tight">美安台灣</span>
+                <span class="text-[#002855] text-[8px] md:text-[10px] tracking-[1px] md:tracking-[2px]">超連鎖®事業</span>
             </div>
-            <div class="hidden md:flex space-x-5 text-sm font-medium text-blue-900">
+            <div class="hidden sm:flex space-x-3 md:space-x-5 text-xs md:text-sm font-medium text-blue-900">
                 <span class="cursor-pointer">訂購</span>
-                <span class="cursor-pointer text-teal-700 border-b-2 border-teal-700">事業</span>
+                <span class="text-teal-700 border-b-2 border-teal-700">事業</span>
                 <span class="cursor-pointer">資訊</span>
-                <span class="cursor-pointer">我的帳戶</span>
-            </div>
-        </div>
-        <div class="flex items-center space-x-4 text-xs text-gray-500">
-            <img src="https://flagcdn.com/w20/tw.png" width="18" alt="TW">
-            <span>TW</span>
-            <span>🛒</span>
-        </div>
-    </nav>
-
-    <div class="vift-gradient text-white p-8 md:px-20 flex flex-col md:flex-row justify-between items-center relative min-h-[280px]">
-        <div class="z-10">
-            <h1 class="text-5xl font-extrabold italic mb-6 tracking-tighter">VIFT</h1>
-            <p class="text-xl opacity-90 mb-1">恭喜你，峻！</p>
-            <div class="text-3xl font-bold flex items-baseline">
-                <span>NT$</span>
-                <span id="header-cash" class="ml-1 text-4xl">0</span>
             </div>
         </div>
         
-        <div class="bg-[#001f3f]/90 p-6 rounded-md shadow-2xl mt-6 md:mt-0 min-w-[280px] border border-white/10 backdrop-blur-sm">
-            <div class="mb-5">
-                <p class="text-xs text-gray-400 mb-1">現金回饋 (可提領)</p>
-                <p class="text-3xl font-bold text-white flex items-baseline">
+        <div class="flex items-center space-x-2 md:space-x-4">
+            <div class="device-tag bg-gray-100 text-gray-500 text-[10px] px-2 py-1 rounded-full border border-gray-200 font-mono"></div>
+            <div class="flex items-center space-x-1 text-[10px] md:text-xs text-gray-400">
+                <img src="https://flagcdn.com/w20/tw.png" width="16" alt="TW">
+                <span class="hidden xs:inline">TW</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="vift-gradient text-white p-6 md:p-12 lg:px-24 flex flex-col lg:flex-row justify-between items-center relative min-h-[300px]">
+        <div class="z-10 text-center lg:text-left w-full lg:w-auto mb-8 lg:mb-0">
+            <h1 class="text-4xl md:text-5xl font-extrabold italic mb-4 md:mb-6 tracking-tighter">VIFT</h1>
+            <p class="text-lg md:text-xl opacity-90 mb-1">恭喜你，峻廷！</p>
+            <div class="text-3xl md:text-4xl font-bold flex items-baseline justify-center lg:justify-start">
+                <span>NT$</span>
+                <span id="header-cash" class="ml-2">0</span>
+            </div>
+        </div>
+        
+        <div class="bg-[#001f3f]/90 p-5 md:p-7 rounded-xl shadow-2xl w-full max-w-[340px] border border-white/10 backdrop-blur-sm">
+            <div class="mb-4">
+                <p class="text-[10px] md:text-xs text-gray-400 mb-1 italic">現金回饋 (可提領餘額)</p>
+                <p class="text-2xl md:text-3xl font-bold text-white flex items-baseline">
                     <span class="text-sm mr-1 italic">NT$</span>
                     <span id="box-cash">0</span>
                 </p>
             </div>
-            <div class="mb-5 border-t border-gray-600/50 pt-3">
-                <p class="text-xs text-gray-400 mb-1">待處理現金</p>
-                <p class="text-xl font-bold text-white flex items-baseline">
+            <div class="mb-4 border-t border-gray-600/50 pt-3">
+                <p class="text-[10px] md:text-xs text-gray-400 mb-1">待處理現金</p>
+                <p class="text-lg md:text-xl font-bold text-white flex items-baseline">
                     <span class="text-sm mr-1 italic">NT$</span>
                     <span id="pending-cash">0</span>
                 </p>
             </div>
             <div class="border-t border-gray-600/50 pt-3">
-                <p class="text-xs text-gray-400 mb-1">累計現金收入</p>
-                <p class="text-xl font-bold text-teal-400 flex items-baseline">
+                <p class="text-[10px] md:text-xs text-gray-400 mb-1">累計現金收入 (總額)</p>
+                <p class="text-lg md:text-xl font-bold text-teal-400 flex items-baseline">
                     <span class="text-sm mr-1 italic text-white">NT$</span>
                     <span id="total-cash">0</span>
                 </p>
@@ -67,56 +74,48 @@
         </div>
     </div>
 
-    <div class="max-w-5xl mx-auto p-6">
-        <div class="grid grid-cols-3 bg-white border rounded-lg shadow-sm divide-x overflow-hidden">
+    <div class="max-w-5xl mx-auto p-4 md:p-6">
+        <div class="grid grid-cols-1 sm:grid-cols-3 bg-white border rounded-xl shadow-sm divide-y sm:divide-y-0 sm:divide-x overflow-hidden">
             <div class="p-4 text-center">
-                <p class="text-xs text-gray-400">零售利潤</p>
-                <p id="profit" class="font-bold text-gray-800">NT$0</p>
+                <p class="text-[10px] text-gray-400 uppercase tracking-wider mb-1">零售利潤</p>
+                <p id="profit" class="text-lg font-bold text-gray-800">NT$0</p>
             </div>
             <div class="p-4 text-center bg-gray-50/50">
-                <p class="text-xs text-red-500 font-bold italic">● 現金回饋</p>
-                <p id="cashback" class="font-bold text-gray-800">NT$0</p>
+                <p class="text-[10px] text-red-500 font-bold italic mb-1 uppercase tracking-wider">● 現金回饋</p>
+                <p id="cashback" class="text-lg font-bold text-gray-800">NT$0</p>
             </div>
             <div class="p-4 text-center">
-                <p class="text-xs text-gray-400">累計提領金額</p>
-                <p id="withdrawn" class="font-bold text-gray-800">NT$0</p>
+                <p class="text-[10px] text-gray-400 uppercase tracking-wider mb-1">累計提領金額</p>
+                <p id="withdrawn" class="text-lg font-bold text-gray-800">NT$0</p>
             </div>
         </div>
+        
+        <p class="text-[10px] text-gray-400 mt-4 text-center">數據最後更新時間：<span id="update-time"></span></p>
     </div>
 
     <script>
-        // --- 合理化邏輯設定 ---
+        // 設定初始數據
         const initialData = {
-            profit: 450324,     // 初始利潤
-            cashback: 301519,   // 初始回饋
-            withdrawn: 618215,  // 初始已提領 (固定或緩慢增加)
-            pendingCash: 24324  // 初始待處理
+            profit: 0,
+            cashback: 0,
+            withdrawn: 0,
+            pendingCash: 0
         };
 
         function updateAndSaveData() {
             let savedData = JSON.parse(localStorage.getItem('vift_data'));
-            
             if (!savedData) {
                 savedData = initialData;
             } else {
-                // 每次整理，隨機增加利潤與回饋
-                const profitBoost = Math.floor(Math.random() * 500) + 50; 
-                const cashbackBoost = Math.floor(Math.random() * 300) + 20;
-                
-                savedData.profit += profitBoost;
-                savedData.cashback += cashbackBoost;
-                // 待處理金額隨機跳動 (-100 ~ +500)
-                savedData.pendingCash += (Math.floor(Math.random() * 600) - 100);
+                // 每次整理隨機加錢
+                savedData.profit += (Math.floor(Math.random() * 800) + 100);
+                savedData.cashback += (Math.floor(Math.random() * 300) + 50);
+                savedData.pendingCash += (Math.floor(Math.random() * 1000) - 200);
             }
-
-            // --- 計算邏輯 (核心修正) ---
-            // 1. 總收入 = 利潤 + 回饋
+            // 計算連動
             savedData.totalCash = savedData.profit + savedData.cashback;
-            
-            // 2. 目前餘額 = 總收入 - 已提領
-            // 確保餘額不會是負數
             savedData.currentBalance = Math.max(0, savedData.totalCash - savedData.withdrawn);
-
+            
             localStorage.setItem('vift_data', JSON.stringify(savedData));
             return savedData;
         }
@@ -138,16 +137,20 @@
         window.onload = () => {
             const data = updateAndSaveData();
             
-            // 動畫顯示邏輯
-            animateValue("header-cash", data.currentBalance, 1200); // 頂部大字 = 餘額
-            animateValue("box-cash", data.currentBalance, 1200);    // 右側框 = 餘額
-            animateValue("pending-cash", data.pendingCash, 1000);   // 待處理
-            animateValue("total-cash", data.totalCash, 1500);      // 累計收入
-
+            // 執行數字動畫
+            animateValue("header-cash", data.currentBalance, 1500);
+            animateValue("box-cash", data.currentBalance, 1500);
+            animateValue("pending-cash", data.pendingCash, 1200);
+            animateValue("total-cash", data.totalCash, 1800);
+            
             // 下方明細
             document.getElementById("profit").innerText = "NT$" + data.profit.toLocaleString();
             document.getElementById("cashback").innerText = "NT$" + data.cashback.toLocaleString();
             document.getElementById("withdrawn").innerText = "NT$" + data.withdrawn.toLocaleString();
+
+            // 更新時間
+            const now = new Date();
+            document.getElementById("update-time").innerText = now.toLocaleString();
         };
     </script>
 </body>
